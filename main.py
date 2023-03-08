@@ -5,6 +5,8 @@ from instagram_service import instagramlogin, getAllMedia, getMediaInfo
 
 from typing import Union
 
+import uvicorn
+
 from fastapi import FastAPI
 from db.base import Base
 from db.session import engine
@@ -71,3 +73,7 @@ async def getBox(id, db:Session = Depends(get_db)):
 @app.put("/boxes/{id}")
 async def updatebox(id, box:BoxCreate, db: Session = Depends(get_db)):
     return updateMediaId(id,box,db=db)
+
+
+if __name__ == '__main__':
+    uvicorn.run(app, port=8003, host='0.0.0.0')
