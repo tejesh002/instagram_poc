@@ -1,8 +1,14 @@
 # instagram_poc
 
-FAST API 
+## FAST API 
 
 pip install -r requirements.txt
 
-TO RUN 
+create .env file 
+add
+INSTA_USERNAME='username'
+INSTA_PASSWORD='password'
+
+
+## TO RUN 
 uvicorn main:app --reload
