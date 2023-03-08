@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+db.json
+sql_app.db
+instagram_env

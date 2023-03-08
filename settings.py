@@ -1,0 +1,3 @@
+INSTAGRAM_USERNAME='nestjs_ts'
+INSTAGRAM_PASSWSORD='835374Tejesh'
+DATABASE="sqlite:///instagram.db"
