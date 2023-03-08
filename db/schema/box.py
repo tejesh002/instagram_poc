@@ -7,4 +7,3 @@ from pydantic import EmailStr
 class BoxCreate(BaseModel):
     media_id: int
     media_url: str
-

@@ -13,7 +13,7 @@ from sqlalchemy.orm import Session
 from fastapi import Depends
 from db.schema.box import BoxCreate
 from db.session import get_db
-from db.repository.box import create_new_box,fetchall,getMediaId
+from db.repository.box import create_new_box,fetchall,getMediaId,updateMediaId
 
 
 
@@ -63,4 +63,11 @@ async def getallboxes(db: Session = Depends(get_db)):
 @app.get("/boxes/{id}")
 async def getBox(id, db:Session = Depends(get_db)):
     boxinfo = getMediaId(id,db=db)
+    if not boxinfo:
+        return {"success":False, "error": 'Invalid Box Id'}
     return getMediaInfo(boxinfo['media_id'])
+
+
+@app.put("/boxes/{id}")
+async def updatebox(id, box:BoxCreate, db: Session = Depends(get_db)):
+    return updateMediaId(id,box,db=db)
