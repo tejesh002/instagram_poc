@@ -36,6 +36,8 @@ def getAllMedia():
     try:
         cl = Client()
         settings = db.get()
+        if settings:
+            cl.set_settings(json.loads(settings[0]['settings']))
         userid = json.loads(settings[0]['settings'])[
             'authorization_data']['ds_user_id']
         return cl.user_medias(int(userid))
