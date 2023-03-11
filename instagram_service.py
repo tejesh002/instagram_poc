@@ -7,7 +7,16 @@ from typing import List
 import ast
 db = ClientStorage()
 
-
+def relogin():
+    try:
+        cl = Client()
+        relogin_response = cl.login(INSTAGRAM_USERNAME,INSTAGRAM_PASSWSORD, relogin=True)
+        db.set(cl)
+        return True
+    except Exception as ex:
+        print(ex)
+        return False
+    
 def instagramlogin():
     try:
         cl = Client()
@@ -29,6 +38,9 @@ def instagramlogin():
         return True
     except Exception as ex:
         print(ex)
+        result = relogin()
+        if result:
+            print("RELOGIN DONE")
         return False
 
 
@@ -44,6 +56,9 @@ def getAllMedia():
 
     except Exception as ex:
         print(ex)
+        result = relogin()
+        if result:
+            print("RELOGIN DONE")
         return False
 
 # 3026981649115911410
