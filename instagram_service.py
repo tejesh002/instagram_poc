@@ -25,17 +25,17 @@ def instagramlogin():
             login_response = cl.login(INSTAGRAM_USERNAME, INSTAGRAM_PASSWSORD)
             if login_response:
                 db.set(cl)
-                return True
+                return db.get()
 
-        # if 'settings' in settings[0]:
-        #     relogin_response = cl.login(
-        #         INSTAGRAM_USERNAME, INSTAGRAM_PASSWSORD, relogin=True)
-        #     print(relogin_response)
-        #     if relogin_response:
-        #         db.set(cl)
-        #         return db.get()
+        if 'settings' in settings[0]:
+            relogin_response = cl.login(
+                INSTAGRAM_USERNAME, INSTAGRAM_PASSWSORD, relogin=True)
+            print(relogin_response)
+            if relogin_response:
+                db.set(cl)
+                return db.get()
 
-        return True
+        return False
     except Exception as ex:
         print(ex)
         result = relogin()
@@ -74,6 +74,7 @@ def getMediaInfo(pkid):
 
         return mediaInfo
     except Exception as ex:
+        print(ex)
         if str(ex) == "Media not found or unavailable":
             return {"success": False, "error": "Invalid Media Id"}
         return {"success": False, "error": str(ex)}
